@@ -1,0 +1,1 @@
+print("There was no exercise!!!")
