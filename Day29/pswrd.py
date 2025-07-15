@@ -9,8 +9,6 @@ GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Arial"
 
-# ---------------------------- GENERATE PASSWORD ------------------------------- #
-
 def generate():
     upper = string.ascii_uppercase
     lower = string.ascii_lowercase
@@ -31,8 +29,6 @@ def generate():
     password = "".join(pasword)
     pas1.insert(0, password)
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
-
 def save_password():
     website = web1.get()
     email = email1.get()
@@ -48,7 +44,6 @@ def save_password():
             web1.delete(0, END)
             pas1.delete(0, END)
 
-# ---------------------------- SEARCH PASSWORD ------------------------------- #
 def find_password():
     website = web1.get()
     if not website:
@@ -65,7 +60,6 @@ def find_password():
     except FileNotFoundError:
         messagebox.showinfo(title="Error", message="No data file found.")
 
-# ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
 window.config(padx=40, pady=40, bg=YELLOW)
@@ -75,7 +69,6 @@ canvas = Canvas(width=512, height=512, bg=YELLOW, highlightthickness=0)
 canvas.create_image(256, 256, image=img)
 canvas.grid(row=0, column=0, columnspan=3, pady=(0, 20))
 
-# Labels
 web = Label(text="Website:", font=(FONT_NAME, 14), bg=YELLOW)
 web.grid(row=1, column=0, sticky="e", pady=5)
 email = Label(text="Email/Username:", font=(FONT_NAME, 14), bg=YELLOW)
@@ -83,7 +76,6 @@ email.grid(row=2, column=0, sticky="e", pady=5)
 pas = Label(text="Password:", font=(FONT_NAME, 14), bg=YELLOW)
 pas.grid(row=3, column=0, sticky="e", pady=5)
 
-# Entries
 web1 = Entry(width=40, font=(FONT_NAME, 13))
 web1.grid(row=1, column=1, sticky="w", pady=5, padx=(0, 10))
 web1.focus()
@@ -95,7 +87,6 @@ email1.insert(0, "user@email.com")
 pas1 = Entry(width=24, font=(FONT_NAME, 13))
 pas1.grid(row=3, column=1, sticky="w", pady=5, padx=(0, 10))
 
-# Buttons
 gen_btn = Button(text="Generate Password",command=generate, bg=GREEN, font=(FONT_NAME, 11), width=18)
 gen_btn.grid(row=3, column=2, sticky="w", pady=5, padx=(0, 30))
 save_btn = Button(text="Add", width=44, command=save_password, bg=PINK, font=(FONT_NAME, 13))
