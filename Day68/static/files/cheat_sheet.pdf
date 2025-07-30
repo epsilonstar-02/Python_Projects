@@ -1,0 +1,21 @@
+# Flask Authentication Cheat Sheet
+
+## Welcome to the Secret Area!
+
+This is a protected file that only authenticated users can download.
+
+### Authentication Features:
+- User Registration
+- Secure Login
+- Password Hashing
+- Session Management
+- Protected Routes
+
+### Technologies Used:
+- Flask
+- Flask-Login
+- Werkzeug Security
+- SQLAlchemy
+- Bootstrap
+
+Thank you for completing the authentication challenge!
