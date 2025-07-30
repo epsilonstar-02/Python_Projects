@@ -1,20 +1,36 @@
 from flask import Flask, render_template
 import requests
-from post import Post
 
-blogs = requests.get('https://api.npoint.io/c790b4d5cab58020d391')
-blog = [Post(post['id'], post['title'],post['subtitle'], post['body']) for post in blogs.json()]
 app = Flask(__name__)
+
+# Fetch blog posts from an external API
+def get_blog_posts():
+    blog_url = "https://api.npoint.io/c790b4d5cab58020d391"
+    response = requests.get(blog_url)
+    all_posts = response.json()
+    return all_posts
 
 @app.route('/')
 def home():
-    return render_template("index.html", posts=blogs.json())
+    all_posts = get_blog_posts()
+    return render_template("index.html", posts=all_posts)
 
-@app.route('/post/<int:post_id>')
-def post(post_id):
-    for post in blog:
-        if post.post_id == post_id:
-            return render_template('post.html', title=post.title, subtitle=post.subtitle, body=post.content)
+@app.route("/post/<int:index>")
+def show_post(index):
+    all_posts = get_blog_posts()
+    requested_post = None
+    for blog_post in all_posts:
+        if blog_post["id"] == index:
+            requested_post = blog_post
+    return render_template("post.html", post=requested_post)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
