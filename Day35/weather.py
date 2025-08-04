@@ -5,7 +5,7 @@ LON=88.363892
 params = {
     "lat" : LAT,
     "lon" : LON,
-    "appid" : "bf4d032b08118331f511c9e96f82c33b",
+    "appid" : "api-key",
 }
 
 weather = requests.get(url="https://api.openweathermap.org/data/3.0/onecall", params=params)
